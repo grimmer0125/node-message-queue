@@ -4,31 +4,28 @@ const zero = require('./z-client.js');
 
 const app = express();
 
-// Test;
-// function resolveAfter2Seconds(x) {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(x);
-//     }, 5000);
-//   });
-// }
+app.get('/test', (req, res) => {
+  console.log('request to test url:', req.method.toString()); // still 兩次, get, head
 
-app.get('/', async (req, res) => {
-  // await resolveAfter2Seconds(2);
-  console.log('request to root url');
+  if (req.method == 'GET') {
+    console.log('start test');
+    // Test RabbitMQ
+    // const data = await rabbit.tryRabbitMQRPCFib(10);
+    // console.log('data:', data);
 
-  // Test RabbitMQ
-  // const data = await rabbit.tryRabbitMQRPCFib(10);
-  // console.log('data:', data);
+    Test zeromq
+    console.log('start to test zeromq');
+    const data = await zero.testZMQReqResp();
+    console.log('data:', data);
+    console.log('end to test zeromq');
+  }
 
-  // Test zeromq
-  console.log('start to test zeromq');
-  const data = await zero.testZMQReqResp();
-  console.log('data:', data);
-  console.log('end to test zeromq');
+  console.log('end to request to test url');
 
-  console.log('end to request to root url');
+  res.send('Test Message queue');
+});
 
+app.get('/', (req, res) => {
   res.send('Hello World');
 });
 

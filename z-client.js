@@ -37,13 +37,6 @@ const zmq = require('zeromq');
 
 function testZMQReqResp() {
   return new Promise((resolve, reject) => {
-    // 當非同步作業成功時，呼叫 resolve(...),而失敗時則呼叫 reject(...)。
-    // 在這個例子中，使用 setTimeout(...) 來模擬非同步程式碼。
-    // 在實務中，您將可能使用像是 XHR 或者一個 HTML5 API.
-    // setTimeout(function(){
-    //   resolve("Success!"); // Yay！非常順利！
-    // }, 250);
-
     // socket to talk to server
     console.log('Connecting to hello world server…');
     const requester = zmq.socket('req');
