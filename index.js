@@ -1,5 +1,6 @@
 const express = require('express');
-const rpc = require('./rpc_client.js');
+const rabbit = require('./rpc_client.js');
+const zero = require('./z-client.js');
 
 const app = express();
 
@@ -15,8 +16,18 @@ const app = express();
 app.get('/', async (req, res) => {
   // await resolveAfter2Seconds(2);
   console.log('request to root url');
-  const data = await rpc.tryRabbitMQRPCFib(10);
+
+  // Test RabbitMQ
+  // const data = await rabbit.tryRabbitMQRPCFib(10);
+  // console.log('data:', data);
+
+  // Test zeromq
+  console.log('start to test zeromq');
+  const data = await zero.testZMQReqResp();
   console.log('data:', data);
+  console.log('end to test zeromq');
+
+  console.log('end to request to root url');
 
   res.send('Hello World');
 });
