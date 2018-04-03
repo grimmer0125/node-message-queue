@@ -9,7 +9,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: express-rabbit-pod7
+  name: express-rabbit-pod9
   labels:
     # name: express-rabbit-pod5
     app: web
@@ -35,13 +35,13 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: my-service7
+  name: my-service9
 spec:
   selector:
     # name: express-rabbit-pod5
     app: web
   ports:
   - protocol: TCP
-    port: 3000
-    # targetPort: 9376
+    port: 3000 # seems containerport
+    # targetPort: 3001 # default: as port,? seems port on pod, NodePort is other than these two
   type: NodePort
