@@ -14,29 +14,37 @@ function fib(n) {
   return a;
 }
 
-amqp.connect('amqp://localhost').then((conn) => {
-  process.once('SIGINT', () => { conn.close(); });
-  return conn.createChannel().then((ch) => {
-    const q = 'rpc_queue';
-    var ok = ch.assertQueue(q, { durable: false });
-    var ok = ok.then(() => {
-      ch.prefetch(1);
-      return ch.consume(q, reply);
-    });
-    return ok.then(() => {
-      console.log(' [x] Awaiting RPC requests');
-    });
 
-    function reply(msg) {
-      const n = parseInt(msg.content.toString());
-      console.log(' [.] fib(%d)', n);
-      const response = fib(n);
-      ch.sendToQueue(
-        msg.properties.replyTo,
-        new Buffer(response.toString()),
-        { correlationId: msg.properties.correlationId },
-      );
-      ch.ack(msg);
-    }
-  });
-}).catch(console.warn);
+function connectToBrokder() {
+  amqp.connect('amqp://localhost').then((conn) => {
+    process.once('SIGINT', () => { conn.close(); });
+    return conn.createChannel().then((ch) => {
+      const q = 'rpc_queue';
+      var ok = ch.assertQueue(q, { durable: false });
+      var ok = ok.then(() => {
+        ch.prefetch(1);
+        return ch.consume(q, reply);
+      });
+      return ok.then(() => {
+        console.log(' [x] Awaiting RPC requests');
+      });
+
+      function reply(msg) {
+        const n = parseInt(msg.content.toString());
+        console.log(' [.] fib(%d)', n);
+        const response = fib(n);
+        ch.sendToQueue(
+          msg.properties.replyTo,
+          new Buffer(response.toString()),
+          { correlationId: msg.properties.correlationId },
+        );
+        ch.ack(msg);
+      }
+    });
+  }).catch(console.warn);
+}
+
+// TODO improve this later. 10s is to to wait for rabbitmq start up
+setTimeout(() => {
+  connectToBrokder();
+}, 10000);

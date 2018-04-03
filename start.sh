@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# to build and use the resulted docker image in minikube
-# eval $(minikube docker-env)
-
-# make docker image
-# docker build -t grimmer0125/express-rabbit .
-
 # start docker for testing
 # # docker run -p 3000:3000 -ti grimmer0125/express-rabbit:latest
 
@@ -14,6 +8,12 @@
 # kubectl run express-rabbit-pod --image-pull-policy=Never --image=grimmer0125/express-rabbit:latest --port=3000
 # or kubectl create -f pod-config.yaml
 # or kubectl create -f deployment.yaml --record
+
+# to build and use the resulted docker image in minikube
+# eval $(minikube docker-env)
+
+# make docker image
+# docker build -t grimmer0125/express-rabbit .
 
 # into its shell for tesing
 # export POD_NAME=express-rabbit-pod-7469d7b866-qd7ck (deployment name + someid)

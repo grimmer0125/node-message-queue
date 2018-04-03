@@ -9,16 +9,16 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: express-rabbit-pod9
+  name: express-rabbit-pod10
   labels:
     # name: express-rabbit-pod5
     app: web
 spec:
   containers:
-    # - name: key-value-store
-    #   image: redis
-    #   ports:
-    #     - containerPort: 6379
+    - name: amqptest
+      image: rabbitmq
+      ports:
+        - containerPort: 5672
     - name: frontend
       image: grimmer0125/express-rabbit
       imagePullPolicy: Never
@@ -35,7 +35,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: my-service9
+  name: my-service10
 spec:
   selector:
     # name: express-rabbit-pod5
