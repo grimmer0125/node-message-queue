@@ -20,3 +20,7 @@ spec:
       imagePullPolicy: Never
       ports:
         - containerPort: 3000
+# ----
+# http://rafabene.com/2015/11/11/how-expose-kubernetes-services/
+# apiVersion: v1
+# kind: Service
