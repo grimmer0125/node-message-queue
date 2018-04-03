@@ -9,7 +9,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: express-rabbit-pod10
+  name: express-rabbit-pod
   labels:
     # name: express-rabbit-pod5
     app: web
@@ -20,7 +20,7 @@ spec:
       ports:
         - containerPort: 5672
     - name: frontend
-      image: grimmer0125/express-rabbit
+      image: express-rabbit-rpc
       imagePullPolicy: Never
       ports:
         - containerPort: 3000
@@ -35,7 +35,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: my-service10
+  name: express-rabbit-service
 spec:
   selector:
     # name: express-rabbit-pod5
