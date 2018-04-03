@@ -3,11 +3,15 @@
   # annotations: []
   # generateName: ""
 
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+# kind: Deployment
+
 apiVersion: v1
 kind: Pod
 metadata:
-  name: express-rabbit-pod2
+  name: express-rabbit-pod7
   labels:
+    # name: express-rabbit-pod5
     app: web
 spec:
   containers:
@@ -24,3 +28,20 @@ spec:
 # http://rafabene.com/2015/11/11/how-expose-kubernetes-services/
 # apiVersion: v1
 # kind: Service
+# kind: ReplicationController
+
+# kind: Endpoints https://kubernetes.io/docs/concepts/services-networking/service/
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-service7
+spec:
+  selector:
+    # name: express-rabbit-pod5
+    app: web
+  ports:
+  - protocol: TCP
+    port: 3000
+    # targetPort: 9376
+  type: NodePort
