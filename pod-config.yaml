@@ -1,0 +1,22 @@
+# ref: https://kubernetes.io/docs/concepts/configuration/overview/
+  # namespace: ""
+  # annotations: []
+  # generateName: ""
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: express-rabbit-pod2
+  labels:
+    app: web
+spec:
+  containers:
+    # - name: key-value-store
+    #   image: redis
+    #   ports:
+    #     - containerPort: 6379
+    - name: frontend
+      image: grimmer0125/express-rabbit
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 3000

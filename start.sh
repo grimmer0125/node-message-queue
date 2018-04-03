@@ -12,6 +12,8 @@
 # start k8s
 # minikube start.
 # kubectl run express-rabbit-pod --image-pull-policy=Never --image=grimmer0125/express-rabbit:latest --port=3000
+# or kubectl create -f pod-config.yaml
+# or kubectl create -f deployment.yaml --record
 
 # into its shell for tesing
 # export POD_NAME=express-rabbit-pod-7469d7b866-qd7ck (deployment name + someid)
@@ -21,6 +23,7 @@
 # add the service: https://kubernetes.io/docs/getting-started-guides/minikube/
 # kubectl expose deployment express-rabbit-pod --type=NodePort  <-should be ok
 # kubectl expose deployment express-rabbit-pod --type=NodePort --port 3000
+# kubectl expose pod, ref: https://kubernetes-v1-4.github.io/docs/user-guide/kubectl/kubectl_expose/
 # curl $(minikube service express-rabbit-pod --url) e.g. http://192.168.99.100:32560
 # 192.168.99.100 is minikube ip
 # curl $(minikube ip):$NODE_PORT
