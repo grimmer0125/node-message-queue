@@ -4,7 +4,7 @@ const rabbit = require('./rpc_client.js');
 
 const app = express();
 
-app.get('/test', async (req, res) => {
+app.get('/rabbit', async (req, res) => {
   console.log('request to test url:', req.method.toString()); // still 兩次, get, head
 
   if (req.method == 'GET') {
