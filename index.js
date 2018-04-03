@@ -19,11 +19,11 @@ app.get('/rabbit', async (req, res) => {
     // const data = await zero.testZMQReqResp();
     // console.log('data:', data);
     // console.log('end to test zeromq');
+    res.send(data);
+  } else {
+    res.send('/rabbit');
   }
-
   console.log('end to request to test url');
-
-  res.send('Test Message queue');
 });
 
 app.get('/', (req, res) => {
