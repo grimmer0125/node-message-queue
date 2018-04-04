@@ -1,6 +1,6 @@
 ## prepare
 
-install minikube
+install minikube: https://github.com/kubernetes/minikube#installation
 
 ## run steps
 
