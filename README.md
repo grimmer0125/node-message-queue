@@ -10,7 +10,7 @@ install minikube: https://github.com/kubernetes/minikube#installation
 
 ### build the local docker image, everytime the code is changed
 
-1. `eval $(minikube docker-env)``
+1. `eval $(minikube docker-env)`
 3. `docker build -t express-rabbit-rpc .`
 
 ### run k8s cluster including docker containers
